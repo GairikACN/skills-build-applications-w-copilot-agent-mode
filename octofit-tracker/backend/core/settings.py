@@ -3,7 +3,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*28(e^1)=2&zr74nu3nt3gf*%%6+s6rel7w))fj_&hdn+b-v^z'
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+import os
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if CODESPACE_NAME:
+    ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
